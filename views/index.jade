@@ -6,24 +6,32 @@ html
     title #{__('TITLE', community)}
     link(href="css/style.css", rel="stylesheet", type="text/css")
     link(href="//fonts.googleapis.com/css?family=Lato:300,400,700,900,700italic|Open+Sans:700italic,400,600,300,700,800", rel="stylesheet", type="text/css")
+    link(href="https://www.freelanceleague.co/assets/styles.css" rel="stylesheet")
   body
-    #wrapper
-      .main
-        .header
-          h1
-            strong #{community}
-          h2 #{__('HEADER', community)}
-        .content
-          .information
-            form(method="POST", action="/invite")#join-form.form
-              input(type="email", name="email", autofocus, placeholder="#{__('ENTER_EMAIL')}")#slack-email.field
-              if tokenRequired
-                input(type="text", name="token", placeholder="#{__('ENTER_TOKEN')}")#slack-token.field
-              input(type="submit", value="Join").submit
-              if !!recaptchaSiteKey
-                div(class="g-recaptcha", data-sitekey="#{recaptchaSiteKey}")
-    if !!recaptchaSiteKey
-       script(src='https://www.google.com/recaptcha/api.js')
+
+    .l-header
+      h1(id="flonc-logo" class="l-header__image c-logo" data-shape="reg")
+        img(class="c-logo__image" src="/images/FreelanceLeagueOfNorthCarolinaCircle.svg" alt="Freelance League Of North Carolina")
+
+    .l-main
+      .l-main__content
+        .c-main-copy
+          p
+            span(class="h-small-caps h-bold") The Freelance League of North Carolina
+            span  promotes the advancement of the independent workforce. By regularly convening freelancers of all kinds we enable connection, foster professional growth, and build community.
+          p We see the rise of the independent worker as one of the most exciting and overlooked movements of our time. We aim to build a sizable community with a voice that cannot be ignored.
+
+
+        form(method="POST", action="/invite", class="c-slack-signup")
+          h2 Join The NC Freelance League Slack!
+          label(class="c-slack-signup__label", for="mce-EMAIL") Email Address
+          input(class="c-slack-signup__field", type="email", name="email", autofocus, placeholder="")#slack-email.field
+          // if tokenRequired
+          //   input(type="text", name="token", placeholder="#{__('ENTER_TOKEN')}")#slack-token.field
+          input(class="c-slack-signup__button", type="submit", value="⟹").submi
+          // if !!recaptchaSiteKey
+          //   div(class="g-recaptcha", data-sitekey="#{recaptchaSiteKey}")
+
     script.
       var tokenRequired = #{tokenRequired};
       var form = document.getElementById('join-form');
